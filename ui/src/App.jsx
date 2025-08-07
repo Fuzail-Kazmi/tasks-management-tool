@@ -1,8 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from '@/components/layout/index';
 
-const DashboardPage = React.lazy(() => import('@/features/pages/layout/dashboard/dashboard'))
+const Layout = React.lazy(() => import('@/components/layout/index'))
+const DashboardPage = React.lazy(() => import('@/features/pages/dashboard/index'))
+const ProfilePage = React.lazy(() => import('@/features/pages/profile/index'))
+const TaskDetailPage = React.lazy(() => import('@/features/pages/task/index'))
+const LoginPage = React.lazy(() => import('@/features/auth/login'))
+const SignupPage = React.lazy(() => import('@/features/auth/signup'))
+
+const NotFoundPage = React.lazy(() => import('@/features/pages/not_found/index'))
 
 
 function App() {
@@ -12,8 +18,13 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Layout />}>
-            <Route path='/dashboard' element={<DashboardPage />} />
+            <Route index path='/' element={<DashboardPage />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/:id' element={<TaskDetailPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
           </Route>
+          <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>
