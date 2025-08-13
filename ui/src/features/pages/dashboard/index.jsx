@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { AlarmClockCheck, CalendarClock, ChevronDown, Circle, CircleOff, LogOut, Moon, Pencil, Plus, Settings, Trash2 } from 'lucide-react'
+import { 
+  AlarmClockCheck, 
+  CalendarClock, 
+  ChevronDown, 
+  Circle, 
+  LogOut, 
+  Moon, 
+  Settings, 
+} from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const Index = () => {
@@ -44,6 +52,7 @@ const Index = () => {
       date: '5-10-2025',
       priority: 'Hard'
     }
+
   ]
 
   return (
@@ -79,11 +88,11 @@ const Index = () => {
           <span className='whitespace-nowrap'>Sort By</span> <ChevronDown className='h-4 w-4' />
           {sortDropdown && (
             <>
-              <ul className='bg-white border border-gray-200 rounded-lg absolute z-30 top-6 left-0 w-35'>
+              <ul className='bg-white border border-gray-200 rounded-lg absolute z-30 top-6.5 left-0 w-35'>
                 {sortby.map((item, idx) => (
                   <li
                     key={idx}
-                    className='flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-700 text-sm w-29'
+                    className='flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 text-sm'
                   >
                     {item.icon}
                     {item.label}
@@ -101,7 +110,7 @@ const Index = () => {
                 {priority.map((item, idx) => (
                   <li
                     key={idx}
-                    className='flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-700 text-sm'
+                    className='flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-200 text-sm'
                   >
                     {item.icon}
                     {item.label}
@@ -112,9 +121,9 @@ const Index = () => {
           )}
         </div>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-4 '>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
         {task.map((task, id) => (
-          <div onClick={() => navigate(`/${task.id}`)} key={id} className='flex justify-between gap-2 p-4 border border-gray-200 rounded-lg'>
+          <div onClick={() => navigate(`/${task.id}`)} key={id} className='flex justify-between gap-2 p-4 border border-gray-200 rounded-lg shadow-sm hover:shadow-md'>
             <div className='flex flex-col justify-between gap-2 max-w-60'>
               <div className='flex flex-col gap-2'>
                 <div className='whitespace-pre-wrap text-xs text-gray-600'>{task.title}</div>
@@ -124,12 +133,15 @@ const Index = () => {
             </div>
             <div className='flex flex-col items-center justify-between text-xs'>
               <div>Work</div>
-              <div>{task.priority}</div>
+              <div className="flex items-center gap-1">
+                {priority.find(p => p.label === task.priority)?.icon}
+                {priority.find(p => p.label === task.priority)?.label}
+              </div>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </div >
   )
 }
 

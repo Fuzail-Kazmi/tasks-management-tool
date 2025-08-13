@@ -11,6 +11,7 @@ const SignupPage = React.lazy(() => import('@/features/auth/signup'))
 const NotFoundPage = React.lazy(() => import('@/features/pages/not_found/index'))
 
 
+
 function App() {
 
   return (
@@ -21,9 +22,9 @@ function App() {
             <Route index path='/' element={<DashboardPage />} />
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/:id' element={<TaskDetailPage />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/signup' element={<SignupPage />} />
           </Route>
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<SignupPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Router>
